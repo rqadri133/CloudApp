@@ -12,6 +12,21 @@ DROP PROCEDURE [dbo].[spAddTestDataAll];
 
 
 GO
+
+DROP TABLE [dbo].[TestObligationMaxRule];
+
+
+GO
+--- Creating DB TABLE
+CREATE TABLE [dbo].[TestObligationMaxRule] (
+    [TestValueID]   UNIQUEIDENTIFIER NOT NULL,
+    [TestValueData] DECIMAL (9, 2)   NULL,
+    [CreatedDate]   DATETIME         NULL,
+    [CreatedBy]     NVARCHAR (18)    NULL
+);
+
+
+GO
 Create Procedure spAddTestDataAll 
  
  @TestDataTbl TestObligation READONLY
