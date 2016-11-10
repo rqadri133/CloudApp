@@ -67,7 +67,7 @@ namespace TransactionDiagnosticTest
         {
 
             Random rand = null;
-         
+            int count = 0;
 
             List<TempData> temps = new List<TempData>();
 
@@ -76,16 +76,20 @@ namespace TransactionDiagnosticTest
                 rand = new Random(10001);
                 temps.Add(new TempData() { TestValueID = Guid.NewGuid(), TestValueData = Convert.ToDecimal(rand.NextDouble() * 1000000 + 1), CreatedBy = "SYSTEM" });
             }
+            count = temps.Count;
 
             List<TempData> temptest1 = new List<TempData>();
-
+            
 
             for (int i = 0; i < 1000000; i++)
             {
                 rand = new Random(10001);
                 temptest1.Add(new TempData() { TestValueID = Guid.NewGuid(), TestValueData = Convert.ToDecimal(rand.NextDouble() * 1000000 + 1), CreatedBy = "SYSTEM" });
             }
-            
+
+            count = count + temptest1.Count;
+
+
             List<TempData> temptest2 = new List<TempData>();
 
             for (int i = 0; i < 1000000; i++)
@@ -94,6 +98,7 @@ namespace TransactionDiagnosticTest
                 temptest2.Add(new TempData() { TestValueID = Guid.NewGuid(), TestValueData = Convert.ToDecimal(rand.NextDouble() * 1000000 + 1), CreatedBy = "SYSTEM" });
             }
 
+            count = count + temptest2.Count;
 
             List<TempData> temptest3 = new List<TempData>();
 
@@ -104,6 +109,8 @@ namespace TransactionDiagnosticTest
                 temptest3.Add(new TempData() { TestValueID = Guid.NewGuid(), TestValueData = Convert.ToDecimal(rand.NextDouble() * 1000000 + 1), CreatedBy = "SYSTEM" });
             }
 
+            count = count + temptest3.Count;
+
             List<TempData> temptest4 = new List<TempData>();
 
 
@@ -113,6 +120,8 @@ namespace TransactionDiagnosticTest
                 temptest4.Add(new TempData() { TestValueID = Guid.NewGuid(), TestValueData = Convert.ToDecimal(rand.NextDouble() * 1000000 + 1), CreatedBy = "SYSTEM" });
             }
 
+            count = count + temptest4.Count;
+
             List<TempData> temptest5 = new List<TempData>();
 
 
@@ -121,6 +130,9 @@ namespace TransactionDiagnosticTest
                 rand = new Random(10001);
                 temptest5.Add(new TempData() { TestValueID = Guid.NewGuid(), TestValueData = Convert.ToDecimal(rand.NextDouble() * 1000000 + 1), CreatedBy = "SYSTEM" });
             }
+
+            count = count + temptest5.Count;
+
             List<TempData> temptest6 = new List<TempData>();
 
 
@@ -130,6 +142,7 @@ namespace TransactionDiagnosticTest
                 temptest6.Add(new TempData() { TestValueID = Guid.NewGuid(), TestValueData = Convert.ToDecimal(rand.NextDouble() * 1000000 + 1), CreatedBy = "SYSTEM" });
             }
 
+            count = count + temptest6.Count;
 
             Random rnd = new Random();
             System.Diagnostics.Stopwatch timer = new System.Diagnostics.Stopwatch();
@@ -138,6 +151,10 @@ namespace TransactionDiagnosticTest
 
             timer.Start();
             long startTimer = timer.ElapsedMilliseconds;
+            
+
+            Console.WriteLine("INSERTING TOTAL NUMBER OF RECORDS..." + count);
+
             Console.WriteLine("Begin process elapsed now..." + startTimer );
             SqlConnection connection = new SqlConnection(System.Configuration.ConfigurationManager.AppSettings["connection"]);
             connection.Open();

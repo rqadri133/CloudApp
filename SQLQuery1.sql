@@ -1,1 +1,1 @@
-﻿DELETE FROM [dbo].[TestObligationMaxRule]
+﻿SELECT COUNT(*) FROM [dbo].[TestObligationMaxRule]
